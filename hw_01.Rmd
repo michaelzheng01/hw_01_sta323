@@ -12,12 +12,48 @@ knitr::opts_chunk$set(echo = TRUE, comment = NA)
 ## Task 1
 
 ```{r mh_distance_function}
-mh_distance <- function() {
-  
-  # body of your function goes here...
-  
+mh_distance <- function(x, y) {
+  if(is.na(x) | is.na(y) | is.infinite(x) | is.infinite(y))  {
+    warning('x and y cannot be NA, NaN, Inf, or -Inf')
+    return(-1)
+  } else if(typeof(x) != typeof(y)) {
+    warning('x and y are not the same type')
+    return(-1)
+  } else {
+    as.character(x)
+    as.character(y)
+    if(nchar(x) != nchar(y)) {
+      warning('x and y are not the same length')
+      return(-1)
+    } else {
+      x <- strsplit(x, split = "")
+      y <- strsplit(y, split = "")
+      a <- 1
+      b <- 0
+      while (a <= length(x)) {
+        if(x[[a]] == y[[a]]) {
+          b <- b + 1
+        }
+      }
+      return(b)
+    }
+  }
 }
 ```
+
+
+
+```{r}
+x <- "car"
+y <- "bye"
+mh_distance(x,y)
+
+```
+      for(a in x) {
+        if(x[a] == y[a]) {
+          b <- b + 1
+        }
+      }
 
 
 ## Task 2
